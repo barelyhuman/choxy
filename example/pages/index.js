@@ -46,6 +46,15 @@ export default function Home() {
       </p>
       <button onClick={() => setReadFromCache(true)}>Load from cache</button>
       {readFromCache && <FromCache />}
+      <style jsx>
+        {`
+          div {
+            max-width: 80ch;
+            margin: 0 auto;
+            padding: 10px;
+          }
+        `}
+      </style>
     </div>
   )
 }
