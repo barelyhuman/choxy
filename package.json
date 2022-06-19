@@ -6,7 +6,7 @@
   "scripts": {
     "nuke": "find . -name 'node_modules' -type d -prune | xargs rm -rf",
     "fix": "eslint --fix .",
-    "next": "bumpp --commit --tag --push",
+    "next": "pnpm run next --filter @barelyhuman/choxy",
     "web:dev": "pnpm run dev --filter example",
     "web:build": "pnpm run build --filter example",
     "build": "pnpm run build --filter @barelyhuman/choxy",
