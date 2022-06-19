@@ -1,6 +1,11 @@
 {
   "name": "choxy-react",
   "author": "Reaper <ahoy@barelyhuman.dev>",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": "./dist/index.mjs",
+  "private":true,
   "scripts": {
     "build": "tsup index.ts --format cjs,esm --dts --target=node12.22",
     "dev": "pnpm build -- --watch"

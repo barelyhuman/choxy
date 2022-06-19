@@ -2,6 +2,11 @@
   "name": "choxy-core",
   "repository": "git@github.com:barelyhuman/choxy.git",
   "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": "./dist/index.mjs",
+  "private": true,
   "author": "Reaper <ahoy@barelyhuman.dev>",
   "scripts": {
     "build": "tsup index.ts --format cjs,esm --dts --target=node12.22"
