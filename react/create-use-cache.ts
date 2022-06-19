@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-import { createCache, CreateCacheOptions } from '../cacher'
-import type { Fetcher } from '../cacher'
+import { createCache, CreateCacheOptions, Fetcher } from '@barelyhuman/choxy'
 
 export function createUseCache(fetcher: Fetcher, options: CreateCacheOptions) {
   const { sub, cache } = createCache(fetcher, options)

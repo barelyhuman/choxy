@@ -1,0 +1,13 @@
+{
+  "name": "choxy-react",
+  "author": "Reaper <ahoy@barelyhuman.dev>",
+  "scripts": {
+    "build": "tsup index.ts --format cjs,esm --dts --target=node12.22",
+    "dev": "pnpm build -- --watch"
+  },
+  "peerDependencies": {
+    "@barelyhuman/choxy": "*",
+    "react": "^18.2.0"
+  },
+  "packageManager": "pnpm@6.32.10"
+}

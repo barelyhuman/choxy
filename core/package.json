@@ -1,0 +1,15 @@
+{
+  "name": "choxy-core",
+  "repository": "git@github.com:barelyhuman/choxy.git",
+  "license": "MIT",
+  "author": "Reaper <ahoy@barelyhuman.dev>",
+  "scripts": {
+    "build": "tsup index.ts --format cjs,esm --dts --target=node12.22"
+  },
+  "prettier": "@barelyhuman/prettier-config",
+  "peerDependencies": {
+    "@barelyhuman/choxy": "*",
+    "react": "^18.2.0"
+  },
+  "packageManager": "pnpm@6.32.10"
+}

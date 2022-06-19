@@ -5,6 +5,7 @@ importers:
   .:
     specifiers:
       '@antfu/ni': 0.16.2
+      '@barelyhuman/choxy': workspace:*
       '@barelyhuman/prettier-config': 1.0.0
       bumpp: 8.2.1
       eslint: 8.18.0
@@ -17,6 +18,7 @@ importers:
       typescript: 4.7.4
     devDependencies:
       '@antfu/ni': 0.16.2
+      '@barelyhuman/choxy': 'link:'
       '@barelyhuman/prettier-config': 1.0.0
       bumpp: 8.2.1
       eslint: 8.18.0
@@ -27,6 +29,9 @@ importers:
       react: 18.2.0
       tsup: 6.1.2_typescript@4.7.4
       typescript: 4.7.4
+
+  core:
+    specifiers: {}
 
   example:
     specifiers:
@@ -37,7 +42,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0
     dependencies:
-      '@barelyhuman/choxy': link:../packages/choxy
+      '@barelyhuman/choxy': 0.0.3-beta.3_react@18.2.0
       next: 12.1.6_react-dom@18.2.0+react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -45,32 +50,8 @@ importers:
       eslint: 8.18.0
       eslint-config-next: 12.1.6_699d05d0e897151f4a13b9a6b74b579c
 
-  packages/choxy:
-    specifiers:
-      '@antfu/ni': 0.16.2
-      '@barelyhuman/prettier-config': 1.0.0
-      '@types/react': ^18.0.14
-      eslint: 8.18.0
-      eslint-config-prettier: 8.5.0
-      eslint-plugin-import: 2.26.0
-      eslint-plugin-simple-import-sort: 7.0.0
-      prettier: 2.7.1
-      react: 18.2.0
-      tsup: 6.1.2
-      typescript: 4.7.4
-    dependencies:
-      '@types/react': 18.0.14
-    devDependencies:
-      '@antfu/ni': 0.16.2
-      '@barelyhuman/prettier-config': 1.0.0
-      eslint: 8.18.0
-      eslint-config-prettier: 8.5.0_eslint@8.18.0
-      eslint-plugin-import: 2.26.0_eslint@8.18.0
-      eslint-plugin-simple-import-sort: 7.0.0_eslint@8.18.0
-      prettier: 2.7.1
-      react: 18.2.0
-      tsup: 6.1.2_typescript@4.7.4
-      typescript: 4.7.4
+  react:
+    specifiers: {}
 
 packages:
 
@@ -93,6 +74,15 @@ packages:
     dependencies:
       regenerator-runtime: 0.13.9
     dev: true
+
+  /@barelyhuman/choxy/0.0.3-beta.3_react@18.2.0:
+    resolution: {integrity: sha512-t5l3A+9iTLfw2MAftO6NT7wZ2ubfC2ppefrIrAadEMsoJmOtrWDBM4f2dasDSf8d88rgIJxBUxpSxEMWSeExPw==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      '@types/react': 18.0.14
+      react: 18.2.0
+    dev: false
 
   /@barelyhuman/prettier-config/1.0.0:
     resolution: {integrity: sha512-qVTlGjryoqKzkDmc14Agj5DDSQYVRbl6uMfqh8oGdAefBD3TeoVKDfQ2L0T1GsHTP1k0LgJbR9n2cYBLdbKqQg==}
@@ -584,7 +574,7 @@ packages:
     dev: true
 
   /concat-map/0.0.1:
-    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
     dev: true
 
   /core-js-pure/3.23.1:

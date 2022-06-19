@@ -6,11 +6,15 @@
     "target": "esnext",
     "declaration": true,
     "outDir": "dist",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "jsx": "preserve",
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "paths": {
+      "@barelyhuman/choxy": ["./core/index.ts"]
+    }
   },
-  "include": ["packages/choxy/src"],
-  "exclude": ["node_modules", "tests"]
+  "include": ["core"],
+  "exclude": ["./**/dist", "node_modules", "tests"]
 }
