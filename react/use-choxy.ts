@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-import { createCache, CreateCacheOptions, Fetcher } from '@barelyhuman/choxy'
+import { createChoxy, CreateChoxyOptions, Fetcher } from '@barelyhuman/choxy'
 
-export function createUseCache(fetcher: Fetcher, options: CreateCacheOptions) {
-  const { sub, cache } = createCache(fetcher, options)
+export function createUseChoxy(fetcher: Fetcher, options: CreateChoxyOptions) {
+  const { sub, data } = createChoxy(fetcher, options)
 
   // rethink this since the hydrated element will differ from the
   // client rendered one, so
@@ -22,6 +22,6 @@ export function createUseCache(fetcher: Fetcher, options: CreateCacheOptions) {
       return unsub
     }, [])
 
-    return { cache }
+    return { data }
   }
 }

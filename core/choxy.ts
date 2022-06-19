@@ -29,15 +29,15 @@ function createListenable() {
   return { sub, listenable: proxy }
 }
 
-export type CreateCacheOptions = {
+export type CreateChoxyOptions = {
   expiry?: number
 }
 
-const defaultOptions: CreateCacheOptions = {
+const defaultOptions: CreateChoxyOptions = {
   expiry: 60 * 1000,
 }
 
-export function createCache(fetcher, options?: CreateCacheOptions) {
+export function createChoxy(fetcher, options?: CreateChoxyOptions) {
   const { expiry } = Object.assign({}, defaultOptions, options)
   const LOADING = Symbol('loading')
   let queue = []
@@ -90,5 +90,5 @@ export function createCache(fetcher, options?: CreateCacheOptions) {
 
   const sub = createSubUnSub(cacheListeners)
 
-  return { cache: proxyCache, sub }
+  return { data: proxyCache, sub }
 }

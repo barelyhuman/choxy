@@ -36,17 +36,21 @@ importers:
   example:
     specifiers:
       '@barelyhuman/choxy': '*'
+      '@types/node': ^18.0.0
+      '@types/react': ^18.0.14
       eslint: 8.18.0
       eslint-config-next: 12.1.6
       next: 12.1.6
       react: 18.2.0
       react-dom: 18.2.0
     dependencies:
-      '@barelyhuman/choxy': 0.0.3-beta.3_react@18.2.0
+      '@barelyhuman/choxy': link:..
       next: 12.1.6_react-dom@18.2.0+react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
+      '@types/node': 18.0.0
+      '@types/react': 18.0.14
       eslint: 8.18.0
       eslint-config-next: 12.1.6_699d05d0e897151f4a13b9a6b74b579c
 
@@ -74,15 +78,6 @@ packages:
     dependencies:
       regenerator-runtime: 0.13.9
     dev: true
-
-  /@barelyhuman/choxy/0.0.3-beta.3_react@18.2.0:
-    resolution: {integrity: sha512-t5l3A+9iTLfw2MAftO6NT7wZ2ubfC2ppefrIrAadEMsoJmOtrWDBM4f2dasDSf8d88rgIJxBUxpSxEMWSeExPw==}
-    peerDependencies:
-      react: ^18.2.0
-    dependencies:
-      '@types/react': 18.0.14
-      react: 18.2.0
-    dev: false
 
   /@barelyhuman/prettier-config/1.0.0:
     resolution: {integrity: sha512-qVTlGjryoqKzkDmc14Agj5DDSQYVRbl6uMfqh8oGdAefBD3TeoVKDfQ2L0T1GsHTP1k0LgJbR9n2cYBLdbKqQg==}
@@ -277,9 +272,13 @@ packages:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
 
+  /@types/node/18.0.0:
+    resolution: {integrity: sha512-cHlGmko4gWLVI27cGJntjs/Sj8th9aYwplmZFwmmgYQQvL5NUsgVJG7OddLvNfLqYS31KFN0s3qlaD9qCaxACA==}
+    dev: true
+
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
-    dev: false
+    dev: true
 
   /@types/react/18.0.14:
     resolution: {integrity: sha512-x4gGuASSiWmo0xjDLpm5mPb52syZHJx02VKbqUKdLmKtAwIh63XClGsiTI1K6DO5q7ox4xAsQrU+Gl3+gGXF9Q==}
@@ -287,11 +286,11 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.1.0
-    dev: false
+    dev: true
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
-    dev: false
+    dev: true
 
   /@typescript-eslint/parser/5.28.0_eslint@8.18.0+typescript@4.7.4:
     resolution: {integrity: sha512-ekqoNRNK1lAcKhZESN/PdpVsWbP9jtiNqzFWkp/yAUdZvJalw2heCYuqRmM5eUJSIYEkgq5sGOjq+ZqsLMjtRA==}
@@ -593,7 +592,7 @@ packages:
 
   /csstype/3.1.0:
     resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
-    dev: false
+    dev: true
 
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}

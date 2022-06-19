@@ -1,4 +1,4 @@
-import { createUseCache } from '@barelyhuman/choxy/hooks'
+import { createUseChoxy } from '@barelyhuman/choxy/react'
 import { useState } from 'react'
 
 const _fetcher = key => {
@@ -15,10 +15,10 @@ const _fetcher = key => {
   })
 }
 
-const useCache = createUseCache(_fetcher)
+const useChoxy = createUseChoxy(_fetcher)
 
 export default function Home() {
-  const { cache } = useCache()
+  const { data } = useChoxy()
   const [id, setId] = useState(1)
 
   return (
@@ -32,24 +32,24 @@ export default function Home() {
       </p>
 
       <p>
-        <span>Post: {cache[`posts.${id}`]?.title}</span>
+        <span>Post: {data[`posts.${id}`]?.title}</span>
         <br />
-        <strong>first fetch:{cache[`posts.${id}`]?.timeToFetch}</strong>
+        <strong>first fetch:{data[`posts.${id}`]?.timeToFetch}</strong>
       </p>
       <p>
-        Todo: {cache[`todos.${id}`]?.title}
+        Todo: {data[`todos.${id}`]?.title}
         <br />
-        <strong>first fetch:{cache[`todos.${id}`]?.timeToFetch}</strong>
+        <strong>first fetch:{data[`todos.${id}`]?.timeToFetch}</strong>
       </p>
       <p>
-        Comment: {cache[`comments.${id}`]?.body}
+        Comment: {data[`comments.${id}`]?.body}
         <br />
-        <strong>first fetch:{cache[`comments.${id}`]?.timeToFetch}</strong>
+        <strong>first fetch:{data[`comments.${id}`]?.timeToFetch}</strong>
       </p>
       <p>
-        User: {cache[`users.${id}`]?.username}
+        User: {data[`users.${id}`]?.username}
         <br />
-        <strong>first fetch:{cache[`users.${id}`]?.timeToFetch}</strong>
+        <strong>first fetch:{data[`users.${id}`]?.timeToFetch}</strong>
       </p>
       <style jsx>
         {`

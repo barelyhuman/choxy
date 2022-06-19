@@ -1,1 +1,1 @@
-export * from './create-use-cache'
+export * from './use-choxy'
