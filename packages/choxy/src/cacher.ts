@@ -29,34 +29,58 @@ function createListenable() {
   return { sub, listenable: proxy }
 }
 
-export function createCache(fetcher) {
+export type CreateCacheOptions = {
+  expiry?: number
+}
+
+const defaultOptions: CreateCacheOptions = {
+  expiry: 60 * 1000,
+}
+
+export function createCache(fetcher, options?: CreateCacheOptions) {
+  const { expiry } = Object.assign({}, defaultOptions, options)
   const LOADING = Symbol('loading')
   let queue = []
   const { listenable, sub: subList } = createListenable()
-  const cache = {}
-  const proxyCache = new Proxy(cache, {
-    get(t, p, r) {
-      // @ts-ignore
-      if (p === '__proto__') return Reflect.get(...arguments)
+  const expiries = {}
+  const proxyCache = new Proxy(
+    {},
+    {
+      get(t, p, r) {
+        // @ts-ignore
+        if (p === '__proto__') return Reflect.get(...arguments)
 
-      if (!t[p] && !listenable[p]) {
-        listenable[p] = LOADING
-      }
+        if (!t[p] && !listenable[p]) {
+          listenable[p] = LOADING
+        }
 
-      // @ts-ignore
-      return Reflect.get(...arguments)
-    },
-  })
+        // @ts-ignore
+        return Reflect.get(...arguments)
+      },
+    }
+  )
 
   const cacheListeners = new Set() as Set<Listener>
 
   subList(async changedList => {
     const promises = Object.keys(changedList)
-      .filter(x => changedList[x] === LOADING && queue.indexOf(x) === -1)
+      .filter(x => {
+        const isLoading = changedList[x] === LOADING
+        const isNotInQ = queue.indexOf(x) === -1
+        const hasExpired =
+          expiries[x] && new Date(expiries[x]).getTime() <= new Date().getTime()
+
+        return isLoading && (isNotInQ || hasExpired)
+      })
       .map(async fetchableParam => {
         queue.push(fetchableParam)
         const data = await fetcher(fetchableParam)
+        const expiredAt = new Date()
+        expiredAt.setMilliseconds(expiredAt.getMilliseconds() + expiry)
+
+        expiries[fetchableParam] = expiredAt
         proxyCache[fetchableParam] = data
+
         queue = queue.filter(y => y !== fetchableParam)
       })
 

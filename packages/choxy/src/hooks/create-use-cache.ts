@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-import { createCache } from '../cacher'
+import { createCache, CreateCacheOptions } from '../cacher'
 import type { Fetcher } from '../cacher'
 
-export function createUseCache(fetcher: Fetcher) {
-  const { sub, cache } = createCache(fetcher)
+export function createUseCache(fetcher: Fetcher, options: CreateCacheOptions) {
+  const { sub, cache } = createCache(fetcher, options)
 
   // rethink this since the hydrated element will differ from the
   // client rendered one, so
