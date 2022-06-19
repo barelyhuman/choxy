@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 
 import { createCache } from '../cacher'
@@ -15,11 +15,12 @@ export function createUseCache(fetcher: Fetcher) {
 
   return function useCache() {
     const rerender = useState({})[1]
-
     useIsomorphicEffect(() => {
-      sub(() => {
+      const unsub = sub(() => {
         rerender({})
       })
+
+      return unsub
     }, [])
 
     return { cache }

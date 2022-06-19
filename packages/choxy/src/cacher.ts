@@ -15,10 +15,10 @@ function createListenable() {
   const proxy = new Proxy(
     {},
     {
-      set(t) {
+      set(t, p, v) {
+        t[p] = v
         listeners.forEach(l => l(t))
-        // @ts-ignore
-        return Reflect.set(...arguments)
+        return true
       },
     }
   )
@@ -30,7 +30,8 @@ function createListenable() {
 }
 
 export function createCache(fetcher) {
-  const toFetch = Symbol('loading')
+  const LOADING = Symbol('loading')
+  let queue = []
   const { listenable, sub: subList } = createListenable()
   const cache = {}
   const proxyCache = new Proxy(cache, {
@@ -38,7 +39,9 @@ export function createCache(fetcher) {
       // @ts-ignore
       if (p === '__proto__') return Reflect.get(...arguments)
 
-      if (!t[p]) listenable[p] = toFetch
+      if (!t[p] && !listenable[p]) {
+        listenable[p] = LOADING
+      }
 
       // @ts-ignore
       return Reflect.get(...arguments)
@@ -49,11 +52,14 @@ export function createCache(fetcher) {
 
   subList(async changedList => {
     const promises = Object.keys(changedList)
-      .filter(x => changedList[x] === toFetch)
-      .map(async x => {
-        const data = await fetcher(x)
-        proxyCache[x] = data
+      .filter(x => changedList[x] === LOADING && queue.indexOf(x) === -1)
+      .map(async fetchableParam => {
+        queue.push(fetchableParam)
+        const data = await fetcher(fetchableParam)
+        proxyCache[fetchableParam] = data
+        queue = queue.filter(y => y !== fetchableParam)
       })
+
     await Promise.all(promises)
     cacheListeners.forEach(l => l(proxyCache))
   })
