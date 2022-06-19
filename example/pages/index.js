@@ -19,33 +19,38 @@ const useCache = createUseCache(_fetcher)
 
 export default function Home() {
   const { cache } = useCache()
-  const [readFromCache, setReadFromCache] = useState(false)
+  const [id, setId] = useState(1)
 
   return (
     <div>
-      <h1>Initial Fetch</h1>
+      <label>Change the id to see the cache in action</label>
+
+      <input type="text" value={id} onChange={e => setId(e.target.value)} />
+
       <p>
-        <span>Post: {cache['posts.1']?.title}</span>
+        Fetching: https://jsonplaceholder.typicode.com/{'{entity}'}/{id}
+      </p>
+
+      <p>
+        <span>Post: {cache[`posts.${id}`]?.title}</span>
         <br />
-        <strong>timeToFetch:{cache['posts.1']?.timeToFetch}</strong>
+        <strong>first fetch:{cache[`posts.${id}`]?.timeToFetch}</strong>
       </p>
       <p>
-        Todo: {cache['todos.1']?.title}
+        Todo: {cache[`todos.${id}`]?.title}
         <br />
-        <strong>timeToFetch:{cache['todos.1']?.timeToFetch}</strong>
+        <strong>first fetch:{cache[`todos.${id}`]?.timeToFetch}</strong>
       </p>
       <p>
-        Comment: {cache['comments.1']?.body}
+        Comment: {cache[`comments.${id}`]?.body}
         <br />
-        <strong>timeToFetch:{cache['comments.1']?.timeToFetch}</strong>
+        <strong>first fetch:{cache[`comments.${id}`]?.timeToFetch}</strong>
       </p>
       <p>
-        User: {cache['users.1']?.username}
+        User: {cache[`users.${id}`]?.username}
         <br />
-        <strong>timeToFetch:{cache['users.1']?.timeToFetch}</strong>
+        <strong>first fetch:{cache[`users.${id}`]?.timeToFetch}</strong>
       </p>
-      <button onClick={() => setReadFromCache(true)}>Load from cache</button>
-      {readFromCache && <FromCache />}
       <style jsx>
         {`
           div {
@@ -56,18 +61,5 @@ export default function Home() {
         `}
       </style>
     </div>
-  )
-}
-
-function FromCache() {
-  const { cache } = useCache()
-  return (
-    <>
-      <h1>From Cache</h1>
-      <p>Post: {cache['posts.1']?.title}</p>
-      <p>Todo: {cache['todos.1']?.title}</p>
-      <p>Comment: {cache['comments.1']?.body}</p>
-      <p>User: {cache['users.1']?.username}</p>
-    </>
   )
 }
