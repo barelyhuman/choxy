@@ -30,8 +30,6 @@ jobs:
         run: pnpm build
 
       - name: Publish
-        run: |
-          cd packages/choxy
-          npm publish
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
