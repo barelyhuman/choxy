@@ -1,6 +1,6 @@
 {
   "name": "@barelyhuman/choxy",
-  "version": "0.1.0",
+  "version": "0.0.3-beta.1",
   "repository": "git@github.com:barelyhuman/choxy.git",
   "license": "MIT",
   "author": "Reaper <ahoy@barelyhuman.dev>",
@@ -8,10 +8,15 @@
     "access": "public"
   },
   "exports": {
-    "./*": {
-      "import": "./dist/*.mjs",
-      "require": "./dist/*.js",
-      "types": "./dist/*.d.ts"
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./hooks": {
+      "import": "./dist/hooks.mjs",
+      "require": "./dist/hooks.js",
+      "types": "./dist/hooks.d.ts"
     },
     "./package.json": "./package.json"
   },
@@ -24,7 +29,8 @@
     "build:cacher": "tsup src/index.ts --format cjs,esm --dts --target=node12.22",
     "dev": "pnpm build -- --watch",
     "fix": "eslint --fix .",
-    "test": "echo 'true'"
+    "test": "echo 'true'",
+    "next": "bumpp --commit --tag --push"
   },
   "prettier": "@barelyhuman/prettier-config",
   "dependencies": {
