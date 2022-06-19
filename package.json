@@ -6,6 +6,7 @@
   "scripts": {
     "nuke": "find . -name 'node_modules' -type d -prune | xargs rm -rf",
     "fix": "eslint --fix .",
+    "next": "bumpp --commit --tag --push",
     "web:dev": "pnpm run dev --filter example",
     "web:build": "pnpm run build --filter example",
     "build": "pnpm run build --filter @barelyhuman/choxy",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@antfu/ni": "^0.16.2",
     "@barelyhuman/prettier-config": "^1.0.0",
+    "bumpp": "^8.2.1",
     "eslint": "^8.18.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
