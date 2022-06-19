@@ -4,6 +4,9 @@
   "repository": "git@github.com:barelyhuman/choxy.git",
   "license": "MIT",
   "author": "Reaper <ahoy@barelyhuman.dev>",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     "./*": {
       "import": "./dist/*.mjs",
