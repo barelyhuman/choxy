@@ -29,6 +29,8 @@
   ],
   "scripts": {
     "build": "pnpm run build -r",
+    "dev": "pnpm run --parallel dev",
+    "build:libs": "pnpm run --filter=!example build",
     "fix": "eslint --fix .",
     "next": "bumpp",
     "nuke": "find . -name 'node_modules' -type d -prune | xargs rm -rf",
@@ -41,6 +43,7 @@
     "@antfu/ni": "0.16.2",
     "@barelyhuman/choxy": "workspace:*",
     "@barelyhuman/prettier-config": "1.0.0",
+    "@typescript-eslint/parser": "^5.28.0",
     "bumpp": "8.2.1",
     "eslint": "8.18.0",
     "eslint-config-prettier": "8.5.0",
