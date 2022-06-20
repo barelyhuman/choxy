@@ -9,7 +9,8 @@
   "private": true,
   "author": "Reaper <ahoy@barelyhuman.dev>",
   "scripts": {
-    "build": "tsup index.ts --format cjs,esm --dts --target=node12.22"
+    "build": "tsup index.ts --format cjs,esm --dts --target=node12.22",
+    "dev": "pnpm build -- --watch"
   },
   "prettier": "@barelyhuman/prettier-config",
   "peerDependencies": {

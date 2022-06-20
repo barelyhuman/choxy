@@ -2,7 +2,8 @@ import { createUseChoxy } from '@barelyhuman/choxy/react'
 import { useState } from 'react'
 
 const _fetcher = key => {
-  const urlPath = key.split('.').join('/')
+  const parts = key.split('.').filter(x => x)
+  const urlPath = parts.join('/')
   return new Promise(resolve => {
     const start = Date.now()
     setTimeout(() => {
@@ -15,7 +16,28 @@ const _fetcher = key => {
   })
 }
 
-const useChoxy = createUseChoxy(_fetcher)
+let expiries = new Map()
+
+const expiryPlug = {
+  beforePick(cache, key, q) {
+    const expiry = expiries.get(key)
+    const isExpired = new Date(expiry).getTime() < new Date().getTime()
+    if (isExpired) {
+      delete cache[key]
+      delete q[key]
+    }
+  },
+  after(cache, keys) {
+    keys.forEach(key => {
+      const expireIn = 15 * 1000 // 15 seconds
+      const expiry = new Date()
+      expiry.setMilliseconds(expiry.getMilliseconds() + expireIn)
+      expiries.set(key, expiry)
+    })
+  },
+}
+
+const useChoxy = createUseChoxy(_fetcher, { plugins: [expiryPlug] })
 
 export default function Home() {
   const { data } = useChoxy()
@@ -30,6 +52,25 @@ export default function Home() {
       <p>
         Fetching: https://jsonplaceholder.typicode.com/{'{entity}'}/{id}
       </p>
+      <p>Currently: cache set to expire in 15 seconds</p>
+
+      <pre>
+        {`
+        const useChoxy = createUseChoxy(_fetcher, { plugins: [expiryPlugin] })
+
+        function App(){
+          const { data } = useChoxy()
+          const [id, setId] = useState(1)
+
+          return <>
+            <span>Post: {data[\`posts.${id}\`]?.title}</span>
+            <span>Todo: {data[\`todo.${id}\`]?.title}</span>
+            <span>Comment: {data[\`posts.${id}\`]?.body}</span>
+            <span>User: {data[\`users.${id}\`]?.username}</span>   
+          </>
+        }
+      `}
+      </pre>
 
       <p>
         <span>Post: {data[`posts.${id}`]?.title}</span>
