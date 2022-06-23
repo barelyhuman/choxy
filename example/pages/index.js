@@ -47,21 +47,23 @@ export default function Home() {
       <p>Currently: cache set to expire in 15 seconds</p>
 
       <pre>
-        {`
-        const useChoxy = createUseChoxy(_fetcher, { plugins: [expiryPlugin] })
+        <code className="hljs language-js">
+          {`
+const useChoxy = createUseChoxy(_fetcher, { plugins: [expiryPlugin] })
 
-        function App(){
-          const { data } = useChoxy()
-          const [id, setId] = useState(1)
+function App(){
+  const { data } = useChoxy()
+  const [id, setId] = useState(1)
 
-          return <>
-            <span>Post: {data[\`posts.${id}\`]?.title}</span>
-            <span>Todo: {data[\`todo.${id}\`]?.title}</span>
-            <span>Comment: {data[\`posts.${id}\`]?.body}</span>
-            <span>User: {data[\`users.${id}\`]?.username}</span>   
-          </>
-        }
+  return <>
+    <span>Post: {data[\`posts.${id}\`]?.title}</span>
+    <span>Todo: {data[\`todo.${id}\`]?.title}</span>
+    <span>Comment: {data[\`posts.${id}\`]?.body}</span>
+    <span>User: {data[\`users.${id}\`]?.username}</span>   
+  </>
+}
       `}
+        </code>
       </pre>
 
       <p>
