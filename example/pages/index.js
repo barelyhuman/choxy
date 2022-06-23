@@ -1,3 +1,4 @@
+import { expiryPlugin } from '@barelyhuman/choxy/plugins'
 import { createUseChoxy } from '@barelyhuman/choxy/react'
 import Introduction from 'components/intro.mdx'
 import { useState } from 'react'
@@ -19,28 +20,13 @@ const _fetcher = key => {
   })
 }
 
-let expiries = new Map()
-
-const expiryPlug = {
-  beforePick(cache, key, q) {
-    const expiry = expiries.get(key)
-    const isExpired = new Date(expiry).getTime() < new Date().getTime()
-    if (isExpired) {
-      delete cache[key]
-      delete q[key]
-    }
-  },
-  after(cache, keys) {
-    keys.forEach(key => {
-      const expireIn = 15 * 1000 // 15 seconds
-      const expiry = new Date()
-      expiry.setMilliseconds(expiry.getMilliseconds() + expireIn)
-      expiries.set(key, expiry)
-    })
-  },
-}
-
-const useChoxy = createUseChoxy(_fetcher, { plugins: [expiryPlug] })
+const useChoxy = createUseChoxy(_fetcher, {
+  plugins: [
+    expiryPlugin({
+      milliseconds: 15 * 1000, // 15 seconds
+    }),
+  ],
+})
 
 export default function Home() {
   const { data } = useChoxy()
