@@ -1,15 +1,28 @@
-@import url("https://rsms.me/raster/raster2.css?v=20");
-
+@import url('https://rsms.me/raster/raster2.css?v=20');
 
 :root {
-  --base: #040507;
-  --surface: #0d1117;
-  --overlay: #171d27;
-  --muted: #455a78;
-  --subtle: #8499b9;
-  --text: #d5dde7;
+  --base: #f8f9fa;
+  --text: #343a40;
+
+  --subtle: #495057;
+  --muted: #868e96;
+
+  --surface: #f1f3f5;
+  --overlay: #e9ecef;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --base: #212529;
+    --text: #f8f9fa;
+
+    --subtle: #f1f3f5;
+    --muted: #e9ecef;
+
+    --overlay: #495057;
+    --surface: #343a40;
+  }
+}
 
 :root {
   --fontSize: 14px;
@@ -17,13 +30,17 @@
   --foreground-color: var(--text);
 }
 
-input[type="text"] {
+input[type='text'] {
   margin: 10px;
   padding: 4px 10px;
   background: var(--surface);
   border: 0px;
   border-radius: 6px;
   color: var(--text);
+}
+
+a {
+  color: var();
 }
 
 code.hljs {
