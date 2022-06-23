@@ -33,6 +33,8 @@
     "build:libs": "pnpm run --filter=!example build",
     "fix": "eslint --fix .",
     "next": "bumpp",
+    "docs:dev": "mudkip -p --stylesheet=./docs/styles.css",
+    "docs:build": "mudkip --stylesheet ./docs/styles.css",
     "nuke": "find . -name 'node_modules' -type d -prune | xargs rm -rf",
     "test": "echo 'true'",
     "web:build": "pnpm run build --filter example",

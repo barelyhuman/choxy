@@ -1,7 +1,6 @@
+import { createChoxy, CreateChoxyOptions, Fetcher } from '@barelyhuman/choxy'
 import { useEffect } from 'react'
 import { useState } from 'react'
-
-import { createChoxy, CreateChoxyOptions, Fetcher } from '@barelyhuman/choxy'
 
 export function createUseChoxy(fetcher: Fetcher, options: CreateChoxyOptions) {
   const { sub, data } = createChoxy(fetcher, options)

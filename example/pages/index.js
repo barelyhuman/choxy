@@ -1,5 +1,8 @@
 import { createUseChoxy } from '@barelyhuman/choxy/react'
+import Introduction from 'components/intro.mdx'
 import { useState } from 'react'
+
+import Navigation from '../components/navigation'
 
 const _fetcher = key => {
   const parts = key.split('.').filter(x => x)
@@ -45,6 +48,9 @@ export default function Home() {
 
   return (
     <div>
+      <Navigation />
+      <Introduction />
+      <h2 id="demo">Demo</h2>
       <label>Change the id to see the cache in action</label>
 
       <input type="text" value={id} onChange={e => setId(e.target.value)} />

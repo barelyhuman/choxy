@@ -1,18 +1,27 @@
 @import url("https://rsms.me/raster/raster2.css?v=20");
 
 
+:root {
+  --base: #040507;
+  --surface: #0d1117;
+  --overlay: #171d27;
+  --muted: #455a78;
+  --subtle: #8499b9;
+  --text: #d5dde7;
+}
+
 
 :root {
   --fontSize: 14px;
-  --foreground-color: #18181b;
-  --background-color: #f2f2f3;
+  --background-color: var(--base);
+  --foreground-color: var(--text);
 }
 
 input[type="text"] {
   margin: 10px;
   padding: 4px 10px;
-  background: #e5e5e7;
+  background: var(--surface);
   border: 0px;
   border-radius: 6px;
-  color: var(--foreground-color);
+  color: var(--text);
 }

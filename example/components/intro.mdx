@@ -1,0 +1,106 @@
+## Getting Started
+
+_**IN BETA** EVERYTHING MIGHT CHANGE_
+
+Let's just look at an example
+
+**Example**:
+
+```js
+import { createUseChoxy } from '@barelyhuman/choxy/react'
+import { expiryPlugin } from '@barelyhuman/choxy/plugins'
+
+const fetcher = key => {
+  const parts = key.split('.').filter(x => x)
+  const urlPath = parts.join('/')
+  return fetch(`https://jsonplaceholder.typicode.com/${urlPath}`).then(
+    response => response.json()
+  )
+}
+
+const useChoxy = createUseChoxy(fetcher, { plugins: [expiryPlugin] })
+
+export default function Home() {
+  const { data } = useChoxy()
+  return <>{data['posts.id']?.title}</>
+}
+```
+
+**Choxy** plays the part of being the **magic** to fetching async data for you while being framework agnostic. The example uses _`React`_ because it's a little more smaller and makes it easier to explain.
+
+Let's see the flow of data here:
+
+> `data['posts.id']` => `choxy` => `fetcher` => `data['posts.id']`
+
+As a developer, you define what the _key_ is going to be which is `posts.id` in the example.
+You also define how you plan to use the _key_, which is the `fetcher` function. If you've used [`swr`](https://swr.vercel.app/) this aspect of the library isn't that different.
+
+**choxy** takes care of triggering the fetcher for each invocation of the `data` object, these might be read operations and these make a lot of sense when working with data that needs to be just rendered after being fetched. This is also the data that you normally need cached to avoid having to wait for the same data again and again.
+
+There's cases where you might want it to update itself in a bit and that's where the **_plugins_** come into play, which can help you set cache expiry, add auto refresh, and a lot more (I've not added more plugins yet, so... )
+
+### Vanilla JS
+
+The entire library is based on the concept of Proxy objects and event listeners. The _`react`_ hook you see on top is a wrapper around those listeners that re-render the component for you when new data is received, which is also something you can create for other frameworks if you wish to but this keeps the base of the library framework agnostic and can actually be used with vanilla js
+
+Here's what the library's usage would look like if written as a JS module.
+
+```js
+import { createChoxy } from '@barelyhuman/choxy'
+
+const { sub, data } = createChoxy(fetcher, {
+  plugins: [
+    //...
+  ],
+})
+
+const unsub = sub(updatedData => {
+  // trigger re-renders
+  // fire other events
+  // etc etc etc
+})
+
+unsub()
+```
+
+The `createChoxy` takes in 2 parameters which are the same for what you see in the _react_ example above. It returns a `sub` function which will register a listener for changes on data and the `sub` function inturn returns a `unsubcribe` function for you to unregister that listener.
+
+In most cases you'll need the `sub` function only to signal other rendering logic that it needs to re-render.
+
+> **Note**: The _`sub`_ function will fire for every update on the _`data`_ object, so if there's cases where you know the keys you want to track, you can add logic for that in the listener to avoid multiple renders. The library does plan to add this as an internal plugin soon
+
+## Plugins
+
+### Internal
+
+The library comes with it's own set of plugins that you can use and here's a list of them
+
+- Cache Expiry (`expiryPlugin`)
+- Auto Refresh (`autoRefreshPlugin`)
+
+All of these can be imported from the `@barelyhuman/choxy/plugins` path
+
+### Writing your own
+
+Writing your own plugins isn't recommended at this time since the library is still under dev but you can refer to the existing plugins to get a base idea. This doc will be updated once the plugin API is a little more solidified.
+
+## Who is it for?
+
+Why write something like this when there's so many more matured libraries that handle this while implementing actual RFC's that are amazing, a good example being [swr](https://swr.vercel.app) from Vercel.
+
+To be fair, I wrote a smaller version of this for a production project that needed something simpler to handle getting _`signedUrl`_'s for files from the external API , as a simple memoized async function would still need to be invoked every single time I needed the image and re-invoked as data updated. This was written as a small helper to hide the async logic and make rendering the image as simple as the following.
+
+```html
+<img src="{fileUrls[fileId]}" />
+
+<PDFReader source="{fileUrls[fileId]}" />
+```
+
+Where just adding the hook into the components was all that was needed and I didn't want to complicate the hook logic with a lot of ref's and state checks so I wrote this with proxy and subscriber approach which seemed to work well with the version of react in that project.
+
+Looking back, I could've just used something like react-query or swr.
+
+There's been changes in react in the past year which need a few changes to avoid the un-necessary firing of these listeners for the same component, these will be incorporated in the library once I get bandwidth to dedicatedly work on the library or someone to help with the other open source libraries I have.
+
+But, **Who is this library for?**
+It's well written for me
