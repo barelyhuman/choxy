@@ -6,7 +6,7 @@ importers:
     specifiers:
       '@antfu/ni': 0.16.2
       '@barelyhuman/choxy': workspace:*
-      '@barelyhuman/prettier-config': 1.0.0
+      '@barelyhuman/prettier-config': 1.1.0
       '@typescript-eslint/parser': ^5.28.0
       bumpp: 8.2.1
       eslint: 8.18.0
@@ -20,7 +20,7 @@ importers:
     devDependencies:
       '@antfu/ni': 0.16.2
       '@barelyhuman/choxy': 'link:'
-      '@barelyhuman/prettier-config': 1.0.0
+      '@barelyhuman/prettier-config': 1.1.0
       '@typescript-eslint/parser': 5.28.0_eslint@8.18.0+typescript@4.7.4
       bumpp: 8.2.1
       eslint: 8.18.0
@@ -94,8 +94,8 @@ packages:
       regenerator-runtime: 0.13.9
     dev: true
 
-  /@barelyhuman/prettier-config/1.0.0:
-    resolution: {integrity: sha512-qVTlGjryoqKzkDmc14Agj5DDSQYVRbl6uMfqh8oGdAefBD3TeoVKDfQ2L0T1GsHTP1k0LgJbR9n2cYBLdbKqQg==}
+  /@barelyhuman/prettier-config/1.1.0:
+    resolution: {integrity: sha512-OlommcxHffkX+BtAsXP1ipK0WzKgNha5a+T+reNlNZZkHPZzZrLpQ23snAbubN4xZiV73Z6E+To02ZZka0eTTQ==}
     dev: true
 
   /@eslint/eslintrc/1.3.0:
