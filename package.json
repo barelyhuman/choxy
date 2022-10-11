@@ -52,7 +52,7 @@
     "@antfu/ni": "0.16.2",
     "@barelyhuman/choxy": "workspace:*",
     "@barelyhuman/prettier-config": "1.1.0",
-    "@typescript-eslint/parser": "^5.28.0",
+    "@typescript-eslint/parser": "5.40.0",
     "bumpp": "8.2.1",
     "eslint": "8.18.0",
     "eslint-config-prettier": "8.5.0",
