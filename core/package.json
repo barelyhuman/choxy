@@ -17,5 +17,5 @@
     "@barelyhuman/choxy": "*",
     "react": "^18.2.0"
   },
-  "packageManager": "pnpm@6.32.25"
+  "packageManager": "pnpm@7.29.3"
 }
