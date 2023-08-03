@@ -55,7 +55,7 @@
     "@typescript-eslint/parser": "^5.28.0",
     "bumpp": "8.2.1",
     "eslint": "8.18.0",
-    "eslint-config-prettier": "8.5.0",
+    "eslint-config-prettier": "8.10.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-simple-import-sort": "7.0.0",
     "prettier": "2.7.1",
