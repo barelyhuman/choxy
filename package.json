@@ -49,7 +49,7 @@
   },
   "prettier": "@barelyhuman/prettier-config",
   "devDependencies": {
-    "@antfu/ni": "0.16.2",
+    "@antfu/ni": "0.23.0",
     "@barelyhuman/choxy": "workspace:*",
     "@barelyhuman/prettier-config": "1.1.0",
     "@typescript-eslint/parser": "^5.28.0",
