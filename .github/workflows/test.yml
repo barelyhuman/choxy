@@ -13,7 +13,7 @@ jobs:
           ref: ${{ github.head_ref }}
       - uses: pnpm/action-setup@v2.2.2
         with:
-          version: 6.32.10
+          version: 6.35.1
       - name: Deps
         run: pnpm install
       - name: Build
